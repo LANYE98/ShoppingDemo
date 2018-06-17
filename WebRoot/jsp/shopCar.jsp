@@ -74,6 +74,8 @@
 					}
 				}
 				document.getElementById("checkAll").checked = (num == boxs.length);
+				//显示num值
+				$("#NUM").text();
 			}
 			
 			function submitOrder(){
@@ -109,7 +111,7 @@
 <body>
 	<!-- header部分 -->
 	<div id="shortcut">
-		<script type="text/javascript">header("${session_user_name}");</script>
+		<script type="text/javascript">header("${session_user.name}");</script>
 	﻿	<div class="nav">
 			<div class="w960 center">
 				<ul>
@@ -146,6 +148,7 @@
 							<div class="shoppingcart_promotions_01">
 								<ul class="shoppingcart_list">
 									<li class="row01">
+										<!-- 勾选按钮 -->
 										<input type="checkbox" name="box"  value="${shopCar.id}"  
 									 			onclick="checkboxFun(this.value)"/> 
 									</li>
@@ -195,7 +198,7 @@
 		        <div align="right" id="div_total" style="display: block;clear:both;">
 		        	<p style="font-size:14px;font-weight:bold;line-height:31px;">
 		        		数量总计：
-		            	<span style="color:red;font-size:16px;font-weight:bold;">${num}</span>&nbsp;&nbsp;(件)
+		            	<span style="color:red;font-size:16px;font-weight:bold;" id="NUM">${num}</span>&nbsp;&nbsp;(件)
 		        	</p>
 		            <p style="font-size:14px;font-weight:bold;line-height:31px;">
 		            	金额总计：
@@ -205,7 +208,7 @@
 		            <p>
 		            	
 		                <form action="${ctx}/order.action?step=1" method="post" id="form">
-				            <td><a href="${ctx}/index.do" name="goon" class="goon"><img alt="" src="images/shop.jpg"/></a></td>
+				            <td><a href="IndexServlet" name="goon" class="goon"><img alt="" src="images/shop.jpg"/></a></td>
 				            <!-- 通过隐藏输入框 将订单相关信息传递至后台 -->
 				            <input type="hidden" name="orderInfo" id="orderInfo"/>
 				            <td>

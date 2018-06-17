@@ -68,7 +68,7 @@
 	<!-- header部分 -->
 	<div id="shortcut">
 		<script type="text/javascript">
-			header("${session_user_name}");
+			header("${session_user.name}");
 		</script>
 		﻿
 		<div class="nav">

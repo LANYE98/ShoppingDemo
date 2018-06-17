@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.moms.mapper.ShopCarMapper" >
+
+  <update id="updateBuyNumByPrimaryKey" parameterType="org.yueqian.bean.ShopCar" >
+    update shopcar set buyNum=#{buyNum,jdbcType=INTEGER} where articleId = #{articleId,jdbcType=INTEGER} and userId = #{userId,jdbcType=INTEGER}
+  </update>
+	
+	<delete id="deleteByAidUid" parameterType="org.yueqian.bean.ShopCar">
+		delete from shopcar where articleId = #{articleId,jdbcType=INTEGER} and userId = #{userId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="org.yueqian.bean.ShopCar">
+		insert into shopcar(articleId,buyNum,userId) values(#{articleId,jdbcType=INTEGER},#{buyNum,jdbcType=INTEGER},#{userId,jdbcType=INTEGER})
+	</insert>
+	
+	<select id="selectByAidUid" parameterType="org.yueqian.bean.ShopCar" resultType="org.yueqian.bean.ShopCar">
+		select * from shopcar where articleId=#{articleId,jdbcType=INTEGER} and userId=#{userId,jdbcType=INTEGER}
+	</select>
+
+</mapper>

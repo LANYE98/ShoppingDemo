@@ -2,10 +2,22 @@
 <!DOCTYPE configuration PUBLIC "-//mabatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+<settings>
+	<setting name="logImpl" value="LOG4J"/>
+</settings>
+
 	<typeAliases>
-		<package name="com.moms.po"/>
+		<package name="org.yueqian.bean"/>
 	</typeAliases>
 	
-
+<!-- 配置mybatis的分页插件PageHelper -->
+     <plugins>
+         <!-- com.github.pagehelper为PageHelper类所在包名 -->
+         <plugin interceptor="com.github.pagehelper.PageHelper">
+             <!-- 设置数据库类型Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库 -->
+             <property name="dialect" value="mysql"/>
+         </plugin>
+     </plugins>
 	
 </configuration>

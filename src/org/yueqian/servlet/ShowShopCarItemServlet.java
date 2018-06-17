@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.yueqian.bean.ShopCar;
+import org.yueqian.bean.User;
 import org.yueqian.service.ShopCarService;
 import org.yueqian.service.impl.ShopCarServiceImpl;
 
@@ -27,9 +28,9 @@ public class ShowShopCarItemServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ShowShopCarItemServlet-doGet");
-		String userid=request.getSession().getAttribute("session_user_id").toString();
-		System.out.println("userid="+userid);
-		List<ShopCar> list=shopCarService.showUserShopChar(Integer.parseInt(userid));
+		User user=(User)request.getSession().getAttribute("session_user");
+		System.out.println("userid="+user.getId());
+		List<ShopCar> list=shopCarService.showUserShopChar(user.getId());
 		request.getSession().setAttribute("shopCars", list);
 		request.getRequestDispatcher("jsp/shopCar.jsp").forward(request, response);
 	}

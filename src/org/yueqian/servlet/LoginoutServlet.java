@@ -13,8 +13,7 @@ public class LoginoutServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("LoginoutServlet-doGet");
-		request.getSession().setAttribute("session_user_id", "");
-		request.getSession().setAttribute("session_user_name", "");
+		request.getSession().setAttribute("session_user", null);
 		request.getRequestDispatcher("IndexServlet").forward(request, response);
 	}
 

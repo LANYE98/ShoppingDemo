@@ -40,10 +40,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(loginName+"用户:密码正确！");
 				//将用户信息设置到session中
 				HttpSession session=request.getSession(true);
-				session.setAttribute("session_user_id", user.getId());
-				session.setAttribute("session_user_name", user.getName());
-				System.out.println("id="+user.getId());
-				System.out.println("name="+user.getName());
+				session.setAttribute("session_user", user);
 				request.getRequestDispatcher("IndexServlet").forward(request, response);
 			}else{
 				System.out.println(loginName+"用户:密码错误！");
