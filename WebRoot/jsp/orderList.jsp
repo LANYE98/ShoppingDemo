@@ -29,9 +29,9 @@
 	﻿	<div class="nav">
 			<div class="w960 center">
 				<ul>
-					<li><a title="首页" href="index.do">首页</a></li>
+					<li><a title="首页" href="IndexServlet">首页</a></li>
 					<c:forEach items="${firstArticleTypes}" var="firstArticleType" >
-						<li><a title="${firstArticleType.name}" href="${ctx}/index.do?typecode=${firstArticleType.code}">${firstArticleType.name}</a></li>
+						<li><a title="${firstArticleType.name}" href="${ctx}/IndexServlet?typecode=${firstArticleType.code}">${firstArticleType.name}</a></li>
 					</c:forEach>
 				</ul>
 			</div>

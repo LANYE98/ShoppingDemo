@@ -25,9 +25,9 @@
 	﻿	<div class="nav">
 			<div class="w960 center">
 				<ul>
-					<li><a title="首页" href="index.action">首页</a></li>
+					<li><a title="首页" href="IndexServlet">首页</a></li>
 					<c:forEach items="${firstArticleTypes}" var="firstArticleType" >
-						<li><a title="${firstArticleType.name}" href="${ctx}/index.do?typecode=${firstArticleType.code}">${firstArticleType.name}</a></li>
+						<li><a title="${firstArticleType.name}" href="${ctx}/IndexServlet?typecode=${firstArticleType.code}">${firstArticleType.name}</a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -142,7 +142,7 @@
 										<td width="9%">数量</td>
 									</tr>
 									<!-- 迭代购物车中的书 -->
-										<c:forEach items="${shopCars}"  var="shopCar">
+										<c:forEach items="${orderCars}"  var="shopCar">
 											<tr class="align_Center">
 												<td width="25%">${shopCar.article.title} </td>
 												<td width="10%"><span class="price">￥<fmt:formatNumber value="${shopCar.article.price}" pattern="0.00"></fmt:formatNumber>&nbsp;&nbsp;(${shopCar.article.discount}折)</span></td>

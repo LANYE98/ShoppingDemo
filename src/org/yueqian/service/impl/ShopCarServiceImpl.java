@@ -23,8 +23,10 @@ public class ShopCarServiceImpl implements ShopCarService {
 	@Override
 	public List<ShopCar> showUserShopChar(int userid) {
 		List<ShopCar> list=shopCarDao.showUserShopChar(userid);
-		for(int i=0;i<list.size();i++){
-			list.get(i).setArticle(articleDao.findById(list.get(i).getArticleId().toString()));
+		if(list!=null){
+			for(int i=0;i<list.size();i++){
+				list.get(i).setArticle(articleDao.findById(list.get(i).getArticleId().toString()));
+			}
 		}
 		return list;
 	}
@@ -65,6 +67,11 @@ public class ShopCarServiceImpl implements ShopCarService {
 			shopCarMapper.insert(shopCar);
 		}
 		return 0;
+	}
+
+	@Override
+	public int deleteCarById(Integer id) {
+		return shopCarMapper.deleteByPrimaryKey(id);
 	}
 
 }

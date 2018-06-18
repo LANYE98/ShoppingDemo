@@ -17,6 +17,7 @@
 	<!-- 
 	<bean id="userService" class="com.moms.service.impl.UserServiceImpl"></bean>
 	-->
+	<bean id="orderService" class="org.yueqian.service.impl.OrderServiceImpl"></bean>
 	<bean id="shopCarService" class="org.yueqian.service.impl.ShopCarServiceImpl"></bean>
 	
 </beans>

@@ -61,10 +61,17 @@
 			
 			
 			//复选框绑定事件
-			function  checkboxFun(val){
+			function  checkboxFun(val,buyNum){
+				//var n=parseInt($("#NUM").text());
+				//if($(this).is(':checked')){
+				//	$("#NUM").text(n-buyNum);
+				//	$(this).prop("checked",false);
+				//}else{
+				//	$("#NUM").text(n+buyNum);
+				//	$(this).prop("checked",true);
+				//}
 				var boxs = document.getElementsByName("box");
 				var num = 0;
-				
 				//在Js中foreach并不会遍历每个元素,而是遍历Key,即所有属性
 				for (var i = 0; i < boxs.length; i++) {
 					//全选事件点击，其他复选框和全选框状态相同
@@ -74,8 +81,6 @@
 					}
 				}
 				document.getElementById("checkAll").checked = (num == boxs.length);
-				//显示num值
-				$("#NUM").text();
 			}
 			
 			function submitOrder(){
@@ -150,7 +155,7 @@
 									<li class="row01">
 										<!-- 勾选按钮 -->
 										<input type="checkbox" name="box"  value="${shopCar.id}"  
-									 			onclick="checkboxFun(this.value)"/> 
+									 			onclick="checkboxFun(this.value,${shopCar.buyNum})"/> 
 									</li>
 									<li class="row00">
 										<a name="productpic" href="item.action?id=${shopCar.article.id}" title="${shopCar.article.title}">
@@ -198,7 +203,7 @@
 		        <div align="right" id="div_total" style="display: block;clear:both;">
 		        	<p style="font-size:14px;font-weight:bold;line-height:31px;">
 		        		数量总计：
-		            	<span style="color:red;font-size:16px;font-weight:bold;" id="NUM">${num}</span>&nbsp;&nbsp;(件)
+		            	<span style="color:red;font-size:16px;font-weight:bold;" id="NUM">${num }</span>&nbsp;&nbsp;(件)
 		        	</p>
 		            <p style="font-size:14px;font-weight:bold;line-height:31px;">
 		            	金额总计：
@@ -207,11 +212,12 @@
 		            </p>
 		            <p>
 		            	
-		                <form action="${ctx}/order.action?step=1" method="post" id="form">
+		                <form action="order.action?step=1" method="post" id="form">
 				            <td><a href="IndexServlet" name="goon" class="goon"><img alt="" src="images/shop.jpg"/></a></td>
 				            <!-- 通过隐藏输入框 将订单相关信息传递至后台 -->
 				            <input type="hidden" name="orderInfo" id="orderInfo"/>
 				            <td>
+				            	<!-- 提交按钮 -->
 								<button id="commitOrder" style="background-image: url(images/balance.jpg);width: 140px;height: 35px" 
 								type="button" onclick="submitOrder()"></button>
 							</td>

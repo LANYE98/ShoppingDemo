@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.moms.mapper.OrderMapper" >
+	<resultMap id="BaseResultMap" type="org.yueqian.bean.Order" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="SEND_DATE" property="sendDate" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DOUBLE" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  
+	<insert id="insertOrder" parameterType="org.yueqian.bean.Order">
+	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+    </selectKey>
+		INSERT INTO orders
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderCode != null" >
+        ORDER_CODE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="sendDate != null" >
+        SEND_DATE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+	</insert>
+	
+	<insert id="insertOrderItem" parameterType="org.yueqian.bean.OrderItem">
+		insert into order_item(order_id,article_id,order_num) values(#{orderId},#{articleId},#{orderNum})
+	</insert>
+
+	<select id="selectOrdersByUserId" parameterType="java.lang.Integer" resultType="org.yueqian.bean.Order">
+		select 
+			id as id,
+			order_code as orderCode,
+			create_date as createDate,
+			send_date as sendDate,
+			status as status,
+			Amount as amount,
+			user_id as userId from orders where user_id=#{userid}
+	</select>
+	
+	<select id="selectOrderItemByOrderId" parameterType="java.lang.Integer" resultType="org.yueqian.bean.OrderItem">
+		select 
+			order_id as orderId,
+			article_id as articleId,
+			order_num as orderNum from order_item where order_id=#{orderid}
+	</select>
+
+</mapper>

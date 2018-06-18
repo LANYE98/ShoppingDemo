@@ -10,12 +10,20 @@
 		delete from shopcar where articleId = #{articleId,jdbcType=INTEGER} and userId = #{userId,jdbcType=INTEGER}
 	</delete>
 	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from shopcar where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
 	<insert id="insert" parameterType="org.yueqian.bean.ShopCar">
 		insert into shopcar(articleId,buyNum,userId) values(#{articleId,jdbcType=INTEGER},#{buyNum,jdbcType=INTEGER},#{userId,jdbcType=INTEGER})
 	</insert>
 	
 	<select id="selectByAidUid" parameterType="org.yueqian.bean.ShopCar" resultType="org.yueqian.bean.ShopCar">
 		select * from shopcar where articleId=#{articleId,jdbcType=INTEGER} and userId=#{userId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectById" parameterType="java.lang.Integer" resultType="org.yueqian.bean.ShopCar">
+		select * from shopcar where id=#{id}
 	</select>
 
 </mapper>
